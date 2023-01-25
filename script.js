@@ -38,12 +38,34 @@ let playing = false;
     btn.addEventListener("click", guess);
 
     // Start game clock
-    
+
     const duration = setInterval(clock, 1000);
 
     function guess() {
       if (playing) {
         giveFeedback(input.value);
+      }
+    }
+
+    function clock() {
+        if (playing) {
+          seconds++;
+        }
+        if (seconds > 59) {
+          seconds = 0;
+          minutes++;
+        } else if (minutes > 59) {
+          seconds = 0;
+          minutes = 0;
+          hours++;
+        } else if (hours > 24 || !playing) {
+          clearInterval(duration);
+        }
+        timeP.textContent = `${hours
+          .toString()
+          .padStart(2, "0")}:${minutes
+          .toString()
+          .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
       }
     }
 }
