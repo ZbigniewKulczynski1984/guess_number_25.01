@@ -16,4 +16,34 @@ let playing = false;
   const timeP = document.getElementById("time");
   const btn = document.getElementById("guess-btn");
   const quitBtn = document.getElementById("quit-btn");
+
+  btn.addEventListener("click", startGame);
+  quitBtn.addEventListener("click", endGame);
+
+  function startGame() {
+
+    // Change playing status to true
+
+    playing = true;
+
+    // Change btn text
+
+    btn.textContent = "Guess";
+
+    // Enable input
+
+    input.disabled = false;
+
+    btn.removeEventListener("click", startGame);
+    btn.addEventListener("click", guess);
+
+    // Start game clock
+    
+    const duration = setInterval(clock, 1000);
+
+    function guess() {
+      if (playing) {
+        giveFeedback(input.value);
+      }
+    }
 }
