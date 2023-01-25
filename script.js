@@ -68,4 +68,20 @@ let playing = false;
           .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
       }
     }
+
+    function endGame() {
+        if (playing) {
+          playing = false;
+          btn.addEventListener("click", startGame);
+    
+          btn.textContent = "Start";
+          input.disabled = true;
+          feedbackP.textContent = "Guess a whole number between 1 and 100";
+          historyP.textContent = "-";
+          timeP.textContent = "00:00:00";
+          seconds = 0;
+          minutes = 0;
+          hours = 0;
+        }
+      }
 }
